@@ -410,7 +410,7 @@ class AIEnhancer:
         for attempt in range(max_retries):
             try:
                 response = openai.ChatCompletion.create(
-                    model="gpt-4",
+                    model="gpt-4o-mini",  # or "gpt-4"
                     messages=[
                         {"role": "system", "content": "You are a social media caption generator. Generate engaging, funny, and positive captions in English. Always include credit and relevant hashtags."},
                         {"role": "user", "content": prompt}
@@ -418,6 +418,7 @@ class AIEnhancer:
                     max_tokens=40,
                     temperature=0.7,
                 )
+
                 caption = response.choices[0].message['content'].strip()
                 logger.info("Generated caption: " + caption)
                 return caption
